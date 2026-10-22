@@ -26,4 +26,5 @@ jobs:
 
       - name: Run Unit Tests
         run: |
+          export PYTHONPATH=$PYTHONPATH:.
           pytest tests/ -v
