@@ -79,6 +79,20 @@ production-flask-cicd-aws/
 .Deploying Docker containers on AWS EC2
 .Configuring Security Groups for public access
 .Troubleshooting real deployment issues
+## Kubernetes Deployment
 
+This project is also deployed on Kubernetes (Minikube).
+
+### Files
+- `k8s/deployment.yaml` – Deployment with Liveness & Readiness probes
+- `k8s/service.yaml` – NodePort Service
+
+### How to Run
+```bash
+minikube start --driver=docker
+docker build -t production-flask-app:latest .
+minikube image load production-flask-app:latest
+kubectl apply -f k8s/
+minikube service flask-app-service --url
 🔗 GitHub Repositoryhttps://github.com/vinodscobby/production-flask-cicd-aws
 
