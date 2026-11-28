@@ -79,9 +79,12 @@ production-flask-cicd-aws/
 .Deploying Docker containers on AWS EC2
 .Configuring Security Groups for public access
 .Troubleshooting real deployment issues
+## Kubernetes Deployment
 
 ## Kubernetes Deployment
 
+=======
+>>>>>>> 23ecadecbf63473e2a1b5fa19083052f1d08b580
 This project is also deployed on Kubernetes (Minikube).
 
 ### Files
@@ -111,6 +114,7 @@ kubectl get all -n flask-prod
 kubectl get configmap,secret -n flask-prod
 kubectl exec -n flask-prod deployment/flask-app -- printenv
 minikube service flask-app-service -n flask-prod --url
+
 
 🔗 GitHub Repositoryhttps://github.com/vinodscobby/production-flask-cicd-aws
 
