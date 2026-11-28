@@ -80,5 +80,37 @@ production-flask-cicd-aws/
 .Configuring Security Groups for public access
 .Troubleshooting real deployment issues
 
+## Kubernetes Deployment
+
+This project is also deployed on Kubernetes (Minikube).
+
+### Files
+- `k8s/deployment.yaml` – Deployment with Liveness & Readiness probes
+- `k8s/service.yaml` – NodePort Service
+
+### How to Run
+```bash
+minikube start --driver=docker
+docker build -t production-flask-app:latest .
+minikube image load production-flask-app:latest
+kubectl apply -f k8s/
+minikube service flask-app-service --url
+
+## Kubernetes Features Implemented
+
+- **Namespace**: `flask-prod` for resource isolation
+- **ConfigMap**: Stores non-sensitive configuration (`APP_ENV`, `APP_VERSION`, `LOG_LEVEL`)
+- **Secret**: Stores sensitive data (`DB_PASSWORD`, `API_KEY`)
+- **Resource Requests & Limits**: CPU and Memory limits defined for containers
+- **Liveness & Readiness Probes**: Health checks for automatic recovery
+- **Deployment + Service**: 2 replicas with NodePort exposure
+
+### Useful Commands
+```bash
+kubectl get all -n flask-prod
+kubectl get configmap,secret -n flask-prod
+kubectl exec -n flask-prod deployment/flask-app -- printenv
+minikube service flask-app-service -n flask-prod --url
+
 🔗 GitHub Repositoryhttps://github.com/vinodscobby/production-flask-cicd-aws
 
